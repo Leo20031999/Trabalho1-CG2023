@@ -6,7 +6,6 @@
 const double PI = 3.141592654;
 
 void primitivaQ() {
-	glColor3f(0, 0, 0);
 	glBegin(GL_LINE_LOOP);
 		glVertex3f(10.0, 20.0, 0.0);
 		glVertex3f(20.0, 20.0, 0.0);
@@ -19,7 +18,6 @@ void primitivaQ() {
 
 void primitivaT() {
 	glPushMatrix();
-	glColor3f(1, 0, 0);
 	glBegin(GL_TRIANGLES);
 		glVertex3f(10.0, 20.0, 0.0);
 		glVertex3f(15.0, 30.0, 0.0);
@@ -31,12 +29,69 @@ void primitivaT() {
 void primitivaC(double rad){
 	int d;
 	glBegin(GL_POLYGON);
-	glColor3f(1,0,0);
 	for(d = 0; d<=32;d++){
 		double angle = (2*PI/32) * d;
 		glVertex2d(rad*cos(angle),rad*sin(angle));
 	}
 	glEnd();
+}
+
+void montanhaA(){
+	glPushMatrix();
+		glColor3f(0,0,0.75);
+		primitivaT();
+	glPopMatrix();
+	glPushMatrix();
+		glColor3f(1,1,1);
+		glBegin(GL_POLYGON);
+			glVertex3f(15,30,0);
+			glVertex3f(13.5,27,0);
+			glVertex3f(13.3,25,0);
+			glVertex3f(15,26,0);
+			glVertex3f(15.7,25,0);
+			glVertex3f(16.5,27,0);
+		glEnd();
+	glPopMatrix();
+	glFlush();
+}
+
+void morro(){
+	glPushMatrix();
+	glColor3f(0,1,0);
+	glBegin(GL_POLYGON);
+	glVertex3f(20, 10,0);
+	glVertex3f(60, 10, 0);
+	glVertex3f(50, 15, 0);
+	glVertex3f(30,15,0);
+	glEnd();
+	glPopMatrix();
+	glFlush();
+}
+
+void gramaA(){
+	glPushMatrix();
+	glColor3f(0,1,0);
+	glBegin(GL_POLYGON);
+	glVertex3f(0,0,0);
+	glVertex3f(0, 20, 0);
+	glVertex3f(800, 20, 0);
+	glVertex3f(800,0,0);
+	glEnd();
+	glPopMatrix();
+	glFlush();
+}
+
+void gramaB(){
+	glPushMatrix();
+	glColor3f(0.5,1,0.5);
+	glBegin(GL_POLYGON);
+	glVertex3f(0,20,0);
+	glVertex3f(0, 25, 0);
+	glVertex3f(800, 25, 0);
+	glVertex3f(800,20,0);
+	glEnd();
+	glPopMatrix();
+	glFlush();
 }
 
 // Drawing routine.
@@ -46,9 +101,40 @@ void drawScene(void) {
 
 	glLoadIdentity();
 	glPushMatrix();
-	glTranslatef(50,50,0);
-	primitivaT();
+	glScalef(5,2.5,1);
+	glTranslatef(-10,-10,0);
+	montanhaA();
 	glPopMatrix();
+
+	glLoadIdentity();
+	glPushMatrix();
+	glScalef(5, 2.5, 1);
+	glTranslatef(-1, -10, 0);
+	montanhaA();
+	glPopMatrix();
+
+	glLoadIdentity();
+	glPushMatrix();
+	glScalef(1.7, 1.2, 1);
+	glTranslatef(-30, 10.8, 0);
+	morro();
+	glPopMatrix();
+
+	glLoadIdentity();
+	glPushMatrix();
+	glScalef(1.7, 1.2, 1);
+	glTranslatef(0, 10.8, 0);
+	morro();
+	glPopMatrix();
+
+	glLoadIdentity();
+	glPushMatrix();
+	gramaA();
+	glPopMatrix();
+	glLoadIdentity();
+		glPushMatrix();
+		gramaB();
+		glPopMatrix();
 
 	glutSwapBuffers();
 }
@@ -76,7 +162,7 @@ int main(int argc, char **argv) {
 
 	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGBA);
 
-	glutInitWindowSize(500, 500);
+	glutInitWindowSize(800, 800);
 	glutInitWindowPosition(100, 100);
 
 	glutCreateWindow("trabalho1");
