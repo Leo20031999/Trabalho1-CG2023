@@ -6,7 +6,7 @@
 const double PI = 3.141592654;
 
 void primitivaQ() {
-	glBegin(GL_LINE_LOOP);
+	glBegin(GL_POLYGON);
 		glVertex3f(10.0, 20.0, 0.0);
 		glVertex3f(20.0, 20.0, 0.0);
 		glVertex3f(20.0, 10.0, 0.0);
@@ -17,7 +17,6 @@ void primitivaQ() {
 }
 
 void primitivaT() {
-	glPushMatrix();
 	glBegin(GL_TRIANGLES);
 		glVertex3f(10.0, 20.0, 0.0);
 		glVertex3f(15.0, 30.0, 0.0);
@@ -34,6 +33,20 @@ void primitivaC(double rad){
 		glVertex2d(rad*cos(angle),rad*sin(angle));
 	}
 	glEnd();
+}
+
+void sol(){
+	int i;
+	glColor3f(1,1,0);
+	for(i=0;i<13;i++){
+		glRotatef(360/13,0,0,1);
+		glBegin(GL_LINES);
+		glVertex2f(0,0);
+		glVertex2f(0.75f,0);
+		glEnd();
+	}
+	primitivaC(5);
+	glColor3f(0,0,0);
 }
 
 void montanhaA(){
@@ -94,6 +107,38 @@ void gramaB(){
 	glFlush();
 }
 
+void arvoreA(){
+	glPushMatrix();
+	glColor3f(0,0.6,0);
+	glTranslatef(10,37,0);
+	primitivaC(8);
+	glPopMatrix();
+	glPushMatrix();
+		glColor3f(0.5f, 0.35f, 0.05f);
+		glScalef(0.3,1.5,1);
+		glTranslatef(18,2,0);
+		primitivaQ();
+		glPopMatrix();
+	glFlush();
+}
+
+void arvoreB(){
+	glPushMatrix();
+	glColor3f(0,0.9,0);
+	glScalef(1,2.3,1);
+	glTranslatef(-5,-7,0);
+	primitivaT();
+	glPopMatrix();
+
+	glPushMatrix();
+		glColor3f(0.5f, 0.35f, 0.05f);
+		glScalef(0.3,1.5,1);
+		glTranslatef(18,2,0);
+		primitivaQ();
+		glPopMatrix();
+	glFlush();
+}
+
 // Drawing routine.
 void drawScene(void) {
 	glMatrixMode(GL_MODELVIEW);
@@ -108,7 +153,7 @@ void drawScene(void) {
 
 	glLoadIdentity();
 	glPushMatrix();
-	glScalef(5, 2.5, 1);
+	glScalef(5, 2.46, 1);
 	glTranslatef(-1, -10, 0);
 	montanhaA();
 	glPopMatrix();
@@ -135,6 +180,82 @@ void drawScene(void) {
 		glPushMatrix();
 		gramaB();
 		glPopMatrix();
+
+	glLoadIdentity();
+	glPushMatrix();
+	glTranslatef(1,20,0);
+	glScalef(0.3,0.3,1);
+	arvoreA();
+	glPopMatrix();
+
+	glLoadIdentity();
+		glPushMatrix();
+		glTranslatef(15,25.5,0);
+		glScalef(0.3,0.3,1);
+		arvoreA();
+		glPopMatrix();
+
+	glLoadIdentity();
+	glPushMatrix();
+	glTranslatef(30, 25.5, 0);
+	glScalef(0.3, 0.3, 1);
+	arvoreB();
+	glPopMatrix();
+
+	glLoadIdentity();
+		glPushMatrix();
+		glTranslatef(27, 23, 0);
+		glScalef(0.3, 0.3, 1);
+		arvoreB();
+		glPopMatrix();
+
+	glLoadIdentity();
+	glPushMatrix();
+	glTranslatef(50, 24, 0);
+	glScalef(0.3, 0.3, 1);
+	arvoreB();
+	glPopMatrix();
+
+	glLoadIdentity();
+	glPushMatrix();
+	glTranslatef(55, 22.5, 0);
+	glScalef(0.3, 0.3, 1);
+	arvoreA();
+	glPopMatrix();
+
+	glLoadIdentity();
+	glPushMatrix();
+	glTranslatef(63, 20, 0);
+	glScalef(0.3, 0.3, 1);
+	arvoreB();
+	glPopMatrix();
+
+	glLoadIdentity();
+	glPushMatrix();
+	glTranslatef(7, 23, 0);
+	glScalef(0.3, 0.3, 1);
+	arvoreB();
+	glPopMatrix();
+
+	glLoadIdentity();
+	glPushMatrix();
+	glTranslatef(59, 22.5, 0);
+	glScalef(0.3, 0.3, 1);
+	arvoreA();
+	glPopMatrix();
+
+	glLoadIdentity();
+	glPushMatrix();
+	glTranslatef(70, 21.5, 0);
+	glScalef(0.3, 0.3, 1);
+	arvoreA();
+	glPopMatrix();
+
+	glLoadIdentity();
+	glPushMatrix();
+	glTranslatef(10,70,0);
+	sol();
+	glPopMatrix();
 
 	glutSwapBuffers();
 }
