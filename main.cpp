@@ -139,6 +139,73 @@ void arvoreB(){
 	glFlush();
 }
 
+void mainBear(){
+	//Torso
+	glPushMatrix();
+	glColor3f(0.5f, 0.35f, 0.05f);
+	glScalef(1.5,0.9,1);
+	primitivaQ();
+	glPopMatrix();
+
+	//Perna1
+	glPushMatrix();
+	glColor3f(0.5f, 0.35f, 0.05f);
+	glScalef(0.4,0.7,1);
+	glTranslatef(32,-2,0);
+	primitivaQ();
+	glPopMatrix();
+
+	//Perna2
+	glPushMatrix();
+	glColor3f(0.5f, 0.35f, 0.05f);
+	glScalef(0.4, 0.7, 1);
+	glTranslatef(32, -2, 0);
+	primitivaQ();
+	glPopMatrix();
+
+	//Perna3
+	glPushMatrix();
+	glColor3f(0.5f, 0.35f, 0.05f);
+	glScalef(0.4, 0.7, 1);
+	glTranslatef(47, -2, 0);
+	primitivaQ();
+	glPopMatrix();
+
+	//Perna4
+	glPushMatrix();
+	glColor3f(0.5f, 0.35f, 0.05f);
+	glScalef(0.4, 0.7, 1);
+	glTranslatef(47, -2, 0);
+	primitivaQ();
+	glPopMatrix();
+
+	//Cabeça
+	glPushMatrix();
+	glColor3f(0.5f, 0.35f, 0.05f);
+	glScalef(0.4, 0.5, 1);
+	glTranslatef(63, 17, 0);
+	primitivaQ();
+	glPopMatrix();
+
+	//Nariz
+	glPushMatrix();
+	glColor3f(0.5f, 0.35f, 0.05f);
+	glScalef(0.4, 0.2, 1);
+	glTranslatef(65.7, 58, 0);
+	primitivaQ();
+	glPopMatrix();
+
+	//Rabo
+	glPushMatrix();
+	glColor3f(0.5f, 0.35f, 0.05f);
+	glTranslatef(15, 15, 0);
+	primitivaC(2);
+	glPopMatrix();
+
+
+	glFlush();
+}
+
 // Drawing routine.
 void drawScene(void) {
 	glMatrixMode(GL_MODELVIEW);
@@ -257,6 +324,11 @@ void drawScene(void) {
 	sol();
 	glPopMatrix();
 
+	glLoadIdentity();
+	glPushMatrix();
+	mainBear();
+	glPopMatrix();
+
 	glutSwapBuffers();
 }
 
@@ -295,6 +367,11 @@ int main(int argc, char **argv) {
 
 	glutMainLoop();
 }
+
+
+
+
+
 
 
 
